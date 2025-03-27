@@ -10,6 +10,7 @@ import songRoutes from "./routes/song.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import { connectDB } from "./lib/db.js";
 import path from "path";
+import cors from "cors";
 
 dotenv.config();
 
@@ -17,6 +18,13 @@ const __dirname = path.resolve();
 
 const app = express();
 const port = process.env.PORT;
+
+app.use(
+    cors({
+        credentials: true,
+        origin: "http://localhost:3000",
+    })
+);
 
 app.use(express.json());
 app.use(
